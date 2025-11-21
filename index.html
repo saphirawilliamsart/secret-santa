@@ -102,11 +102,15 @@ opacity: 0;
 
 <script>
 function generaAbbinamenti() {
-const nomi = ['Emanuele', 'Beatrice', 'Enrico', 'Yao', 'Federica', 'Jan', 'Marco', 'Mekha', 'Michele', 'Sara', 'Ragazza Yao'];
+// Array ordinato: l'indice corrisponde al numero della persona (indice 0 = numero 1, ecc.)
+const nomi = ['Beatrice', 'Emanuele', 'Enrico', 'Yao', 'Federica', 'Jan', 'Marco', 'Mekha', 'Michele', 'Sara', 'Ragazza Yao'];
 const numeri = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
 
-// Mescola i nomi casualmente
-const nomiMescolati = [...nomi].sort(() => Math.random() - 0.5);
+let nomiMescolati;
+// Continua a mescolare finché nessuno pesca se stesso
+do {
+nomiMescolati = [...nomi].sort(() => Math.random() - 0.5);
+} while (nomiMescolati.some((nome, idx) => nome === nomi[idx]));
 
 const lista = document.getElementById('risultato');
 lista.innerHTML = '';
